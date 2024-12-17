@@ -13,6 +13,8 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.dependencies]  # https://python-poetry.org/docs/dependency-specification/
 python = ">=3.13.0,<4.0"
+httpie = "^3.2.4"
+orval = "^0.0.6"
 
 [tool.poetry.group.dev.dependencies]  # https://python-poetry.org/docs/master/managing-dependencies/
 coverage = { extras = ["toml"], version = ">=7.4.1" }
@@ -27,14 +29,14 @@ ruff = ">=0.7.2"
 safety = ">=2.3.5,!=2.3.5"
 shellcheck-py = ">=0.10.0"
 typeguard = ">=4.4.1"
+types-requests = "^2.32.0.20241016"
 
 [[tool.poetry.source]]  # https://python-poetry.org/docs/repositories/
 name = "pypi"
 priority = "primary"
 
 [tool.coverage.report]  # https://coverage.readthedocs.io/en/latest/config.html#report
-# TODO: please raise the bar :)
-fail_under = 0
+fail_under = 30
 precision = 1
 show_missing = true
 skip_covered = true
@@ -79,13 +81,14 @@ force-exclude = true  # https://docs.astral.sh/ruff/settings/#force-exclude
 preview = true  # https://docs.astral.sh/ruff/preview/
 
 [tool.ruff.lint]  # https://github.com/charliermarsh/ruff
-ignore = ["D10", "D203", "D213", "E501", "EM101", "EM102", "FBT001", "ISC001", "RET504", "S101", "TRY003", "TRY300", "W505"]
+ignore = ["T201", "ERA001", "D10", "D203", "D213", "E501", "EM101", "EM102", "FBT001", "ISC001", "RET504", "S101", "TRY003", "TRY300", "W505"]
 select = ["A", "ASYNC", "B", "BLE", "C4", "C90", "D", "DTZ", "E", "EM", "ERA", "F", "FBT", "FLY", "FURB", "G", "I", "ICN", "INP", "INT", "ISC", "LOG", "N", "NPY", "PERF", "PGH", "PIE", "PLC", "PLE", "PLR", "PLW", "PT", "PTH", "PYI", "RET", "RSE", "RUF", "S", "SIM", "SLF", "SLOT", "T10", "T20", "TCH", "TID", "TRY", "UP", "W", "YTT"]
 unfixable = ["ERA001", "F401", "F841", "T201", "T203"]  # https://docs.astral.sh/ruff/settings/#unfixable
 
 [tool.ruff.lint.extend-per-file-ignores] # https://docs.astral.sh/ruff/settings/#extend-per-file-ignores
 # Ignore missing __init__.py files in tests.
 "tests/*" = ["INP001", "PLR2004"]
+"zaps/*" = ["INP001"]
 
 [tool.ruff.lint.flake8-tidy-imports]
 # Disallow all relative imports.
@@ -103,6 +106,10 @@ max-doc-length = 100
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
+
+[tool.poetry.scripts]
+zap = "zapman.__main__:main"
+zapx = "zapman.__main__:main"
 
 [tool.poe.tasks] # https://poethepoet.natn.io/index.html
     [tool.poe.tasks.lint]

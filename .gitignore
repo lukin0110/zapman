@@ -30,3 +30,7 @@ dist/
 htmlcov/
 .pytest_cache/
 reports/
+
+# Zaps for development
+zaplab/
+zaps/.zap_cache/
