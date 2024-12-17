@@ -1,0 +1,12 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: v0.4.3
+_src_path: git@github.com:lukin0110/poetry-copier.git
+ci: github
+description: A Python tool for API testing and development in your terminal.
+name: Zapman
+package_type: package
+repository_url: https://github.com/lukin0110/zapman/
+use_makefile: true
+use_private_package_repository: false
+use_private_publish_repository: false
+use_pydantic: false

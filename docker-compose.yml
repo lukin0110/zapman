@@ -1,0 +1,16 @@
+services:
+  # Container definition for the devcontainer
+  devcontainer:
+    build:
+      context: .
+      args:
+        PYTHON_VERSION: ${PYTHON_VERSION:-3.13.0}
+      target: dev
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/workspaces/zapman/
+
+networks:
+  default:
+    name: zapman-network

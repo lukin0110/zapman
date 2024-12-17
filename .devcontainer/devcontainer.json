@@ -1,0 +1,71 @@
+{
+  "name": "zapman",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "devcontainer",
+  "runServices": [
+    "devcontainer"
+  ],
+  "shutdownAction": "stopCompose",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/zapman/,type=bind,consistency=delegated",
+  "workspaceFolder": "/workspaces/zapman/",
+  "remoteUser": "root",
+  "overrideCommand": true,
+  "initializeCommand": "touch ${localWorkspaceFolder}/.env",
+  "mounts": [
+    "type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock,consistency=consistent"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "charliermarsh.ruff",
+        "eamodio.gitlens",
+        "github.copilot",
+        "GitHub.vscode-github-actions",
+        "GitHub.vscode-pull-request-github",
+        "ms-azuretools.vscode-docker",
+        "ms-python.mypy-type-checker",
+        "ms-python.python",
+        "ryanluker.vscode-coverage-gutters",
+        "tamasfe.even-better-toml",
+        "visualstudioexptteam.vscodeintellicode"
+      ],
+      "settings": {
+        "coverage-gutters.coverageFileNames": [
+          "reports/coverage.xml"
+        ],
+        "dev.containers.copyGitConfig": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll": "explicit",
+          "source.organizeImports": "explicit"
+        },
+        "editor.formatOnSave": true,
+        "editor.rulers": [
+          120
+        ],
+        "editor.tabSize": 4,
+        "github.copilot.chat.edits.enabled": true,
+        "files.autoSave": "onFocusChange",
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff"
+        },
+        "[toml]": {
+          "editor.formatOnSave": false
+        },
+        "mypy-type-checker.importStrategy": "fromEnvironment",
+        "mypy-type-checker.preferDaemon": true,
+        "python.defaultInterpreterPath": "/opt/zapman-env/bin/python",
+        "python.terminal.activateEnvironment": false,
+        "python.testing.pytestEnabled": true,
+        "ruff.importStrategy": "fromEnvironment",
+        "ruff.logLevel": "warning",
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "terminal.integrated.profiles.linux": {
+          "zsh": {
+            "path": "/usr/bin/zsh"
+          }
+        },
+        "workbench.editor.wrapTabs": true
+      }
+    }
+  }
+}
