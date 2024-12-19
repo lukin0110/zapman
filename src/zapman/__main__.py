@@ -2,7 +2,6 @@ import argparse
 import logging
 import sys
 from pathlib import Path
-from re import sub
 
 from zapman._print import print_cookies, print_stores
 from zapman._version import __version__
@@ -12,7 +11,7 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
 
-def main() -> None:
+def main() -> None:  # noqa: PLR0911
     # Handle shortcut `zapx`
     invocation_name = Path(sys.argv[0]).name
     if invocation_name == "zapx":
@@ -37,12 +36,21 @@ def main() -> None:
     run.add_argument("-v", "--verbose", action="store_true", help="🐞 enable debug logging", default=False)
     run.add_argument("--curl", action="store_true", help="🌊 print the curl command")
     run.add_argument("path", type=str, help="🐍 the Zapfile to execute", nargs="?", default=None)
+    curl = subparser.add_parser("curl", help="🌊 print curl command")
+    curl.add_argument("-e", "--env", type=str, help="🌐 API environment to use (default=default)", default="default")
+    curl.add_argument("path", type=str, help="🐍 the Zapfile to print the curl command")
     subparser.add_parser("cookies", help="🍪 view stored cookies")
     subparser.add_parser("vars", help="📋 view stored variables")
     subparser.add_parser("version", help="🔖 show version")
     args = parser.parse_args()
 
-    if getattr(args, "verbose", False):
+    quiet_ = getattr(args, "quiet", False)
+    verbose_ = getattr(args, "verbose", False)
+
+    if quiet_ and verbose_:
+        print("Cannot use both --quiet and --verbose")
+        return
+    if verbose_:
         logging.basicConfig(level=logging.DEBUG, force=True)
     if args.command == "cookies":
         print_cookies()
@@ -52,6 +60,18 @@ def main() -> None:
         return
     if args.command == "version":
         print(f"Zapman {__version__}")
+        return
+    if args.command == "curl":
+        environment = args.env
+        path_target = Path.cwd() / args.path
+        execute(
+            environment=environment,
+            file_path=str(path_target),
+            quiet=True,
+            download=False,
+            verbose=False,
+            curl=True,
+        )
         return
     if args.command == "run":
         if args.path is None:
@@ -64,10 +84,10 @@ def main() -> None:
         execute(
             environment=environment,
             file_path=str(path_target),
-            quiet=args.quiet if not args.curl else True,
+            quiet=quiet_,
             download=args.download,
-            verbose=args.verbose,
-            curl=args.curl,
+            verbose=verbose_,
+            curl=False,
         )
         return
 
