@@ -1,8 +1,16 @@
 [![Lint and Test](https://github.com/lukin0110/zapman/actions/workflows/test.yml/badge.svg)](https://github.com/lukin0110/zapman/actions)
 
-# Zapman
+# 🌐 Zapman
 
-A Python tool for API testing and development in your terminal..
+An API Client for the terminal. A Python CLI for API testing and development.
+
+## ✨ Features
+
+- 🛠️ Environments & variables
+- 🔄 Scriptable & easily shareable via git
+- 🖥️ A simple and small CLI 
+- 🌈 Colored output
+- 🐍 Pure python
 
 ## 🚀 Using
 
@@ -11,6 +19,60 @@ To install this package, run:
 pip install zapman
 ```
 
+Create a `Zapfile` called `get.py` (_`Zapfiles` are just regular python files_):
+```python
+GET = "https://httpbin.org/get"
+
+PARAMS = {
+    "foo": "bar"
+}
+```
+
+Run with:
+```bash
+zap run get.py
+```
+
+Output:
+```bash
+GET /get?foo=bar HTTP/1.1
+Accept: */*
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Host: httpbin.org
+User-Agent: Zapman/0.0.0
+
+
+
+HTTP/1.1 200 OK
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Origin: *
+Connection: keep-alive
+Content-Length: 325
+Content-Type: application/json
+Date: Thu, 19 Dec 2024 23:26:56 GMT
+Server: gunicorn/19.9.0
+
+{
+    "args": {
+        "foo": "bar"
+    },
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate",
+        "Host": "httpbin.org",
+        "User-Agent": "Zapman/0.0.0",
+        "X-Amzn-Trace-Id": "Root=1-6764abbf-60e6ac856a6fe7c32c0e2f3b"
+    },
+    "origin": "0.0.0.0",
+    "url": "https://httpbin.org/get?foo=bar"
+}
+
+
+Elapsed time: 1.10440575s
+```
+
+More example `Zapfiles` in [zaps](zaps).
 
 ## 🧑‍💻 Contributing
 

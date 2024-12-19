@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
 
-def main() -> None:  # noqa: PLR0911
+def main() -> None:  # noqa: PLR0911,C901
     # Handle shortcut `zapx`
     invocation_name = Path(sys.argv[0]).name
     if invocation_name == "zapx":
@@ -52,6 +52,8 @@ def main() -> None:  # noqa: PLR0911
         return
     if verbose_:
         logging.basicConfig(level=logging.DEBUG, force=True)
+    elif quiet_:
+        logging.disable(logging.CRITICAL)
     if args.command == "cookies":
         print_cookies()
         return

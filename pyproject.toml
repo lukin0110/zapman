@@ -1,6 +1,6 @@
 [tool.poetry]  # https://python-poetry.org/docs/pyproject/
 name = "zapman"
-version = "0.0.0"
+version = "0.0.1"
 description = "A Python tool for API testing and development in your terminal."
 authors = []
 license = "Proprietary"
@@ -12,7 +12,7 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.dependencies]  # https://python-poetry.org/docs/dependency-specification/
-python = ">=3.13.0,<4.0"
+python = ">=3.10.0,<4.0"
 httpie = "^3.2.4"
 orval = "^0.0.6"
 
@@ -36,7 +36,7 @@ name = "pypi"
 priority = "primary"
 
 [tool.coverage.report]  # https://coverage.readthedocs.io/en/latest/config.html#report
-fail_under = 30
+fail_under = 35
 precision = 1
 show_missing = true
 skip_covered = true

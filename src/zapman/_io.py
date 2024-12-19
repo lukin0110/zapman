@@ -76,7 +76,7 @@ def __validate_env_dict(environment: str, data: Any) -> None:
 def load_environments() -> dict[str, dict[str, str]]:
     zap_envs = Path.cwd() / "zapenvs.py"
     if not zap_envs.exists():
-        logger.info("No 'zapenvs.py' file found in current '%s' directory.", Path.cwd())
+        logger.debug("No 'zapenvs.py' file found in current '%s' directory.", Path.cwd())
         return {"default": {}}
     module = load_module(str(zap_envs))
     keys = module.__dict__.keys()

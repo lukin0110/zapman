@@ -1,5 +1,6 @@
 import pytest
 
+from zapman import __version__
 from zapman._parse import ZapFile, construct_call_args  # noqa: PLC2701
 
 
@@ -8,15 +9,15 @@ from zapman._parse import ZapFile, construct_call_args  # noqa: PLC2701
     [
         (
             ZapFile(get="https://lukin.be"),
-            ["zapman", "--print=HBhbm", "GET", "https://lukin.be", "User-Agent: Zapman/0.1"],
+            ["zapman", "--print=HBhbm", "GET", "https://lukin.be", f"User-Agent: Zapman/{__version__}"],
         ),
         (
             ZapFile(get="https://lukin.be", download=True),
-            ["zapman", "--print=HBhbm", "--download", "GET", "https://lukin.be", "User-Agent: Zapman/0.1"],
+            ["zapman", "--print=HBhbm", "--download", "GET", "https://lukin.be", f"User-Agent: Zapman/{__version__}"],
         ),
         (
             ZapFile(get="https://lukin.be", headers={"X-Foo": "bar"}),
-            ["zapman", "--print=HBhbm", "GET", "https://lukin.be", "User-Agent: Zapman/0.1", "X-Foo: bar"],
+            ["zapman", "--print=HBhbm", "GET", "https://lukin.be", f"User-Agent: Zapman/{__version__}", "X-Foo: bar"],
         ),
         (
             ZapFile(get="https://lukin.be", headers={"user-agent": "Eddie Vedder"}),
@@ -24,7 +25,7 @@ from zapman._parse import ZapFile, construct_call_args  # noqa: PLC2701
         ),
         (
             ZapFile(get="https://lukin.be", params={"foo": "bar"}),
-            ["zapman", "--print=HBhbm", "GET", "https://lukin.be", "User-Agent: Zapman/0.1", "foo==bar"],
+            ["zapman", "--print=HBhbm", "GET", "https://lukin.be", f"User-Agent: Zapman/{__version__}", "foo==bar"],
         ),
         (
             ZapFile(get="https://lukin.be", body_json={"foo": "bar"}),
@@ -36,20 +37,43 @@ from zapman._parse import ZapFile, construct_call_args  # noqa: PLC2701
                 '{"foo": "bar"}',
                 "GET",
                 "https://lukin.be",
-                "User-Agent: Zapman/0.1",
+                f"User-Agent: Zapman/{__version__}",
             ],
         ),
         (
             ZapFile(get="https://lukin.be", body_form={"foo": "bar"}),
-            ["zapman", "--print=HBhbm", "--form", "GET", "https://lukin.be", "User-Agent: Zapman/0.1", "foo=bar"],
+            [
+                "zapman",
+                "--print=HBhbm",
+                "--form",
+                "GET",
+                "https://lukin.be",
+                f"User-Agent: Zapman/{__version__}",
+                "foo=bar",
+            ],
         ),
         (
             ZapFile(get="https://lukin.be", cookies={"foo": "bar"}),
-            ["zapman", "--print=HBhbm", "GET", "https://lukin.be", "User-Agent: Zapman/0.1", "Cookie:foo=bar"],
+            [
+                "zapman",
+                "--print=HBhbm",
+                "GET",
+                "https://lukin.be",
+                f"User-Agent: Zapman/{__version__}",
+                "Cookie:foo=bar",
+            ],
         ),
         (
             ZapFile(get="https://lukin.be", verify=False),
-            ["zapman", "--print=HBhbm", "--verify", "no", "GET", "https://lukin.be", "User-Agent: Zapman/0.1"],
+            [
+                "zapman",
+                "--print=HBhbm",
+                "--verify",
+                "no",
+                "GET",
+                "https://lukin.be",
+                f"User-Agent: Zapman/{__version__}",
+            ],
         ),
     ],
 )
@@ -72,7 +96,7 @@ def test_get_with_existing_cookies(zapfile: ZapFile, expected: str) -> None:
         "--print=HBhbm",
         "GET",
         "https://lukin.be",
-        "User-Agent: Zapman/0.1",
+        f"User-Agent: Zapman/{__version__}",
     ]
     assert construct_call_args(zapfile, cookies) == [*base_args, expected]
 
@@ -82,11 +106,19 @@ def test_get_with_existing_cookies(zapfile: ZapFile, expected: str) -> None:
     [
         (
             ZapFile(post="https://lukin.be"),
-            ["zapman", "--print=HBhbm", "POST", "https://lukin.be", "User-Agent: Zapman/0.1"],
+            ["zapman", "--print=HBhbm", "POST", "https://lukin.be", f"User-Agent: Zapman/{__version__}"],
         ),
         (
             ZapFile(post="https://lukin.be", body_form={"foo": "bar"}),
-            ["zapman", "--print=HBhbm", "--form", "POST", "https://lukin.be", "User-Agent: Zapman/0.1", "foo=bar"],
+            [
+                "zapman",
+                "--print=HBhbm",
+                "--form",
+                "POST",
+                "https://lukin.be",
+                f"User-Agent: Zapman/{__version__}",
+                "foo=bar",
+            ],
         ),
         (
             ZapFile(post="https://lukin.be", body_json={"foo": "bar"}),
@@ -98,7 +130,7 @@ def test_get_with_existing_cookies(zapfile: ZapFile, expected: str) -> None:
                 '{"foo": "bar"}',
                 "POST",
                 "https://lukin.be",
-                "User-Agent: Zapman/0.1",
+                f"User-Agent: Zapman/{__version__}",
             ],
         ),
         (
@@ -111,7 +143,7 @@ def test_get_with_existing_cookies(zapfile: ZapFile, expected: str) -> None:
                 '{"foo":"bar"}',
                 "POST",
                 "https://lukin.be",
-                "User-Agent: Zapman/0.1",
+                f"User-Agent: Zapman/{__version__}",
             ],
         ),
         (
@@ -124,7 +156,7 @@ def test_get_with_existing_cookies(zapfile: ZapFile, expected: str) -> None:
                 ' {"foo": "bar"} ',
                 "POST",
                 "https://lukin.be",
-                "User-Agent: Zapman/0.1",
+                f"User-Agent: Zapman/{__version__}",
             ],
         ),
         (
@@ -137,7 +169,7 @@ def test_get_with_existing_cookies(zapfile: ZapFile, expected: str) -> None:
                 " Whatever ",
                 "POST",
                 "https://lukin.be",
-                "User-Agent: Zapman/0.1",
+                f"User-Agent: Zapman/{__version__}",
             ],
         ),
     ],
