@@ -1,3 +1,6 @@
+###################################
+# $ zap run post.py
+###################################
 from zapman import env
 
 POST = f"{env['endpoint']}/post"

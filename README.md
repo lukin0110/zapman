@@ -4,6 +4,23 @@
 
 An API Client for the terminal. A Python CLI for API testing and development.
 
+```bash
+usage: zap [-h] {run,curl,cookies,vars,version} ...
+
+An API Client for the terminal. A Python CLI for API testing and development.
+
+options:
+  -h, --help            show this help message and exit
+
+commands:
+  {run,curl,cookies,vars,version}
+    run                 🚀 run a Zapfile
+    curl                🌊 print the curl command for a Zapfile
+    cookies             🍪 view stored cookies
+    vars                📋 view stored variables
+    version             🔖 show version
+```
+
 ## ✨ Features
 
 - 🛠️ Environments & variables

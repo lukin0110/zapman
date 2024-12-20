@@ -19,8 +19,9 @@ def main() -> None:  # noqa: PLR0911,C901
 
     parser = argparse.ArgumentParser(
         prog="zap",
-        description="A Python tool for API testing and development in your terminal.",
+        description="An API Client for the terminal. A Python CLI for API testing and development.",
     )
+
     subparser = parser.add_subparsers(
         title="commands",
         dest="command",
@@ -34,9 +35,8 @@ def main() -> None:  # noqa: PLR0911,C901
     run.add_argument("-d", "--download", action="store_true", help="💾 download the response body")
     run.add_argument("-q", "--quiet", action="store_true", help="🤫 suppress output")
     run.add_argument("-v", "--verbose", action="store_true", help="🐞 enable debug logging", default=False)
-    run.add_argument("--curl", action="store_true", help="🌊 print the curl command")
     run.add_argument("path", type=str, help="🐍 the Zapfile to execute", nargs="?", default=None)
-    curl = subparser.add_parser("curl", help="🌊 print curl command")
+    curl = subparser.add_parser("curl", help="🌊 print the curl command for a Zapfile")
     curl.add_argument("-e", "--env", type=str, help="🌐 API environment to use (default=default)", default="default")
     curl.add_argument("path", type=str, help="🐍 the Zapfile to print the curl command")
     subparser.add_parser("cookies", help="🍪 view stored cookies")

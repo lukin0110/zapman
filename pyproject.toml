@@ -1,6 +1,6 @@
 [tool.poetry]  # https://python-poetry.org/docs/pyproject/
 name = "zapman"
-version = "0.0.1"
+version = "0.0.2"
 description = "An API Client for the terminal. A Python CLI for API testing and development."
 authors = []
 license = "Proprietary"
