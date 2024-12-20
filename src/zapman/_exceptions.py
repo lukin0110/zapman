@@ -13,7 +13,8 @@ class ZapTypeError(ZapError, TypeError):
         self.errors = errors
 
     def __str__(self) -> str:
-        return f"Invalid zapfile\n🛠️  {'\n🛠️  '.join(self.errors)}"
+        error_str = "\n🛠️  ".join(self.errors)
+        return f"Invalid zapfile:\n🛠️  {error_str}"
 
 
 class ZapKeyError(ZapError, LookupError):

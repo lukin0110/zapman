@@ -1,5 +1,5 @@
 import pickle  # noqa: S403
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 from rich import print as rprint
@@ -27,7 +27,7 @@ def print_cookies() -> None:
         for cookie in cookies:
             expired_str = r"[bold red]\[EXPIRED][/bold red]" if cookie.is_expired() else ""
             rprint(f"[orange1]{cookie.name}[/orange1] {expired_str}")
-            iso_date = datetime.fromtimestamp(cookie.expires, tz=UTC).isoformat() if cookie.expires else "None"
+            iso_date = datetime.fromtimestamp(cookie.expires, tz=timezone.utc).isoformat() if cookie.expires else "None"
             values = [
                 ("value", cookie.value),
                 ("domain", cookie.domain),

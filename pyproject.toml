@@ -76,7 +76,7 @@ pythonpath = "src"
 fix = true
 line-length = 120
 src = ["src", "tests"]
-target-version = "py313"
+target-version = "py310"
 force-exclude = true  # https://docs.astral.sh/ruff/settings/#force-exclude
 preview = true  # https://docs.astral.sh/ruff/preview/
 
