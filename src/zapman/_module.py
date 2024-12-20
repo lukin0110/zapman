@@ -2,12 +2,12 @@ import importlib.util
 from pathlib import Path
 from types import ModuleType
 
-from orval import kebab_case
+from orval import snake_case
 
 
 def __module_name(file_path: str) -> str:
     relative = Path(file_path).relative_to(Path.cwd())
-    results = [kebab_case(part) for part in relative.parts]
+    results = [snake_case(part) for part in relative.parts]
     if relative.is_file() or relative.suffix:
         results[-1] = relative.stem
     return ".".join(results)
