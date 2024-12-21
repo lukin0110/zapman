@@ -185,7 +185,7 @@ curl -i -X PUT 'https://httpbin.org/put' \
 --data '{"name": "Jeffrey", "last_name": "Lebowski"}'
 ```
 
-### Store environment variables
+### Use environment & store environment variables
 
 Create an _"environments"_ file called `zapenvs.py`:
 ```python
@@ -225,10 +225,9 @@ Environment: default
   my_date=Sat, 21 Dec 2024 22:57:38 GMT
 ```
 
-
 ### More examples
 
-More example `Zapfiles` can be found in [zaps](zaps). Dive deeper on how to use environments, environment variables and cookies.
+More example `Zapfiles` can be found in [zaps](zaps). Dive deeper into how to use environments, environment variables, and cookies.
 
 ## 🧑‍💻 Contributing
 
