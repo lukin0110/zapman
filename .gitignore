@@ -33,4 +33,5 @@ reports/
 
 # Zaps for development
 zaplab/
+.zap_cache/
 zaps/.zap_cache/

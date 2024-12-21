@@ -57,7 +57,7 @@ def print_stores() -> None:
                 rprint(f"Failed to load store from '{store_file}'")
 
     for store in results:
-        rprint(f"[bold green]Store: {store[0]}[/bold green]")
+        rprint(f"[bold green]Environment: {store[0]}[/bold green]")
         for key, value in store[1].items():
             rprint(f"  [cyan]{key}[/cyan]=[not bold grey78]{value}[not bold grey78]")
         print()

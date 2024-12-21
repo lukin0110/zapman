@@ -23,11 +23,12 @@ commands:
 
 ## ✨ Features
 
-- 🐍 Requests are defined in pure python files (called a `Zapfile`)
+- 🐍 Define requests with pure python
 - 🛠️ Environments & variables
-- 🔄 Scriptable & easily shareable via git
-- 🖥️ A simple and small CLI 
-- 🌈 Colored output
+- 🔄 Scriptable: parse responses, update environment variables, etc.
+- 🚀 Collaborate and share via Git (they’re just Python files 🤷🏽‍♀️)
+- 🖥️ Lightweight and simple CLI 
+- 🌈 Beautiful & colored output
 
 ## 🚀 Using
 
@@ -184,9 +185,50 @@ curl -i -X PUT 'https://httpbin.org/put' \
 --data '{"name": "Jeffrey", "last_name": "Lebowski"}'
 ```
 
+### Store environment variables
+
+Create an _"environments"_ file called `zapenvs.py`:
+```python
+def env_default() -> dict[str, str]:
+    """Provide default environment."""
+    return {
+        "endpoint": "https://httpbin.org",
+    }
+```
+
+Create a `Zapfile` called `store.py`:
+```python
+from zapman import After, env
+
+GET = f"{env['endpoint']}/get"
+
+PARAMS = {
+    "foo": "bar",
+}
+
+
+def after(ctx: After) -> None:
+    env["my_var"] = ctx.json["args"]
+    env["my_date"] = ctx.headers["Date"]
+```
+
+Run with:
+```bash
+zap run --quiet store.py
+zap vars
+```
+
+Output:
+```bash
+Environment: default
+  my_var={'foo': 'bar'}
+  my_date=Sat, 21 Dec 2024 22:57:38 GMT
+```
+
+
 ### More examples
 
-More example `Zapfiles` can be found in [zaps](zaps).
+More example `Zapfiles` can be found in [zaps](zaps). Dive deeper on how to use environments, environment variables and cookies.
 
 ## 🧑‍💻 Contributing
 

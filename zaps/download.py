@@ -9,6 +9,5 @@ DOWNLOAD = True
 
 
 def after(ctx: After) -> None:
-    ctx.info("Downloaded 🤘")
     if ctx.output_file:
-        print(ctx.output_file.read_text())
+        ctx.info(f"Downloaded 🤘: {ctx.output_file.absolute()}")

@@ -1,6 +1,6 @@
 ###################################
 # $ zap run get.py
-# $ zap --env pie run get.py
+# $ zap run --env pie get.py
 ###################################
 from zapman import env
 
