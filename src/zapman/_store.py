@@ -42,7 +42,7 @@ class EnvironmentStore(MutableMapping[str, Any]):
             return self.__env_data[key]
         if key in self.__env_store:
             return self.__env_store[key]
-        raise ZapKeyError(f"Zap key '{key}' does not exist (env={self.__environment})")
+        raise ZapKeyError(f"Zap key '{key}' does not exist", env=self.__environment)
 
     def __setitem__(
         self,
@@ -131,7 +131,7 @@ class CookieStore(MutableMapping[str, Any]):
 
     def __getitem__(self, key: str) -> Any:
         if key not in self.__data:
-            raise ZapKeyError(f"Cookie '{key}' doesn't exist for host '{self.__host}'")
+            raise ZapKeyError(f"Cookie '{key}' doesn't exist for host '{self.__host}'", env=None)
         return self.__data[key]
 
     def __setitem__(self, key: str, value: Any) -> None:

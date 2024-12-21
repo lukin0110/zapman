@@ -4,15 +4,10 @@
 PUT = "https://httpbin.org/put"
 
 HEADERS = {
-    "Content-Type": "application/json",
+    "X-Dude": "Duderino",
 }
 
-# Put a JSON string in the body
-BODY_RAW = """
-{
-    "bttf": {"great": "scott", "biff": "Tannen"},
-    "enabled": true,
-    "float": 3.007,
-    "empty": null
+BODY_JSON = {
+    "name": "Jeffrey",
+    "last_name": "Lebowski",
 }
-"""

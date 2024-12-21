@@ -23,11 +23,11 @@ commands:
 
 ## ✨ Features
 
+- 🐍 Requests are defined in pure python files (called a `Zapfile`)
 - 🛠️ Environments & variables
 - 🔄 Scriptable & easily shareable via git
 - 🖥️ A simple and small CLI 
 - 🌈 Colored output
-- 🐍 Pure python
 
 ## 🚀 Using
 
@@ -36,7 +36,9 @@ To install this package, run:
 pip install zapman
 ```
 
-Create a `Zapfile` called `get.py` (_`Zapfiles` are just regular python files_):
+### `GET` request
+
+Create a `Zapfile` called `get.py`:
 ```python
 GET = "https://httpbin.org/get"
 
@@ -89,7 +91,102 @@ Server: gunicorn/19.9.0
 Elapsed time: 1.10440575s
 ```
 
-More example `Zapfiles` in [zaps](zaps).
+### `POST` request
+
+Create a `Zapfile` called `post.py`:
+```python
+POST = "https://httpbin.org/post"
+
+BODY_FORM = {
+    "foo": "bar"
+}
+```
+
+Run with:
+```bash
+zap run post.py
+```
+
+Output:
+```bash
+POST /post HTTP/1.1
+Accept: */*
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Content-Length: 7
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Host: httpbin.org
+User-Agent: Zapman/0.0.1
+
+foo=bar
+
+
+HTTP/1.1 200 OK
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Origin: *
+Connection: keep-alive
+Content-Length: 482
+Content-Type: application/json
+Date: Sat, 21 Dec 2024 13:54:44 GMT
+Server: gunicorn/19.9.0
+
+{
+    "args": {},
+    "data": "",
+    "files": {},
+    "form": {
+        "foo": "bar"
+    },
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate",
+        "Content-Length": "7",
+        "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
+        "Host": "httpbin.org",
+        "User-Agent": "Zapman/0.0.1",
+        "X-Amzn-Trace-Id": "Root=1-6766c8a4-19b2d0c813b7161f02cc4b30"
+    },
+    "json": null,
+    "origin": "0.0.0.0",
+    "url": "https://httpbin.org/post"
+}
+
+
+Elapsed time: 0.479004791s
+```
+
+### Print `cURL` command
+
+Create a `Zapfile` called `put_json.py`:
+```python
+PUT = "https://httpbin.org/put"
+
+HEADERS = {
+    "X-Dude": "Duderino",
+}
+
+BODY_JSON = {
+    "name": "Jeffrey",
+    "last_name": "Lebowski",
+}
+```
+
+Run with:
+```bash
+zap curl put_json.py
+```
+
+Output:
+```bash
+curl -i -X PUT 'https://httpbin.org/put' \
+--header 'X-Dude: Duderino' \
+--header 'Content-Type: application/json' \
+--data '{"name": "Jeffrey", "last_name": "Lebowski"}'
+```
+
+### More examples
+
+More example `Zapfiles` can be found in [zaps](zaps).
 
 ## 🧑‍💻 Contributing
 

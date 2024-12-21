@@ -29,7 +29,7 @@ def main() -> None:  # noqa: PLR0911,C901
     run = subparser.add_parser(
         "run",
         help="🚀 run a Zapfile",
-        description="Provide a Zapfile to invoke with `zapx <zapfile>.py` or `zap run <zapfile>.py`.",
+        description="Provide a Zapfile to invoke with `zapx <zapfile>` or `zap run <zapfile>`.",
     )
     run.add_argument("-e", "--env", type=str, help="🌐 API environment to use (default=default)", default="default")
     run.add_argument("-d", "--download", action="store_true", help="💾 download the response body")
