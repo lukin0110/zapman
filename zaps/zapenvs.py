@@ -12,3 +12,10 @@ def env_pie() -> dict[str, str]:
     return {
         "endpoint": "https://pie.dev",
     }
+
+
+def env_docker() -> dict[str, str]:
+    return {
+        # For Docker Desktop (altenatively use the host ip)
+        "endpoint": "http://host.docker.internal:8001",
+    }
