@@ -14,6 +14,12 @@ def env_pie() -> dict[str, str]:
     }
 
 
+def env_fastmock() -> dict[str, str]:
+    return {
+        "endpoint": "https://fastmock.lukin.be",
+    }
+
+
 def env_docker() -> dict[str, str]:
     return {
         # For Docker Desktop (altenatively use the host ip)

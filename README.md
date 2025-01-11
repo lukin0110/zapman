@@ -1,6 +1,6 @@
 [![Lint and Test](https://github.com/lukin0110/zapman/actions/workflows/test.yml/badge.svg)](https://github.com/lukin0110/zapman/actions)
 
-# 🌐 Zapman
+# 🌐 Zapman (alpha)
 
 An API Client for the terminal. A Python CLI for API testing and development.
 
@@ -20,6 +20,14 @@ commands:
     vars                📋 view stored variables
     version             🔖 show version
 ```
+
+## 💡 Rationale
+
+I've mainly built this tool to have a simple way to define and share collections of HTTP requests. I mainly work in the terminal, ideally I can manage everything from within an IDE (in my case VSCode). I've used Postman in the past and I've always found it a bit too heavy for my needs. 
+
+I wanted something that was simple to use, scriptable, and shareable. I also wanted to use a language that I know well, Python. Something that provides a CLI and just works in the terminal. 
+
+Zapman has been built on top of HTTPie, which is a great tool for making HTTP requests. I've also added some features that I found useful, like environments and variables, and the ability to capture output and store state. I've also made it easy to share collections by tracking them in a github repo. I hope you find this tool useful! 
 
 ## ✨ Features
 
